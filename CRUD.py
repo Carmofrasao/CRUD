@@ -1,31 +1,110 @@
-def converter(dicionario, tipo, entrada):
+def converter(dicionario, tipo, entrada, acao):
     
     if tipo == "int":
-        dicionario[tipo].append(int(entrada))
+        if acao == 1:
+            dicionario[tipo].append(int(entrada))
+        elif acao == 3:
+            index = dicionario[tipo].index(int(entrada))
+            dicionario[tipo]
+            return            
+        elif acao == 4:
+            dicionario[tipo].remove(int(entrada))
     elif tipo == "float":
-        dicionario[tipo].append(float(entrada))
+        if acao == 1:
+            dicionario[tipo].append(float(entrada))
+        elif acao == 3:
+            return            
+        
+        elif acao == 4:
+            dicionario[tipo].remove(float(entrada))
     elif tipo == "complex":
-        dicionario[tipo].append(complex(entrada))
+        if acao == 1:
+            dicionario[tipo].append(complex(entrada))
+        elif acao == 3:
+            return            
+       
+        elif acao == 4:
+            dicionario[tipo].remove(complex(entrada))
     elif tipo == "list":
-        dicionario[tipo].append(list(entrada))
+        if acao == 1:
+            dicionario[tipo].append(list(entrada))
+        elif acao == 3:
+            return            
+        
+        elif acao == 4:
+            dicionario[tipo].remove(list(entrada))
     elif tipo == "tuple":
-        dicionario[tipo].append(tuple(entrada))
+        if acao == 1:
+            dicionario[tipo].append(tuple(entrada))
+        elif acao == 3:
+            return            
+        
+        elif acao == 4:
+            dicionario[tipo].remove(tuple(entrada))
     elif tipo == "range":
-        dicionario[tipo].append(range(entrada))
+        if acao == 1:
+            dicionario[tipo].append(range(entrada))
+        elif acao == 3:
+            return           
+        
+        elif acao == 4:
+            dicionario[tipo].remove(range(entrada))
     elif tipo == "str":
-        dicionario[tipo].append(str(entrada))
+        if acao == 1:
+            dicionario[tipo].append(str(entrada))
+        elif acao == 3:
+            return            
+        
+        elif acao == 4:
+            dicionario[tipo].remove(str(entrada))
     elif tipo == "bytes":
-        dicionario[tipo].append(bytes(entrada))
+        if acao == 1:
+            dicionario[tipo].append(bytes(entrada))
+        elif acao == 3:
+            return            
+        
+        elif acao == 4:
+            dicionario[tipo].remove(bytes(entrada))
     elif tipo == "bytearray":
-        dicionario[tipo].append(bytearray(entrada))
+        if acao == 1:
+            dicionario[tipo].append(bytearray(entrada))
+        elif acao == 3:
+            return            
+        
+        elif acao == 4:
+            dicionario[tipo].remove(bytearray(entrada))
     elif tipo == "memoryview":
-        dicionario[tipo].append(memoryview(entrada))
+        if acao == 1:
+            dicionario[tipo].append(memoryview(entrada))
+        elif acao == 3:
+            return            
+        
+        elif acao == 4:
+            dicionario[tipo].remove(memoryview(entrada))
     elif tipo == "set":
-        dicionario[tipo].append(set(entrada))
+        if acao == 1:
+            dicionario[tipo].append(set(entrada))
+        elif acao == 3:
+            return            
+        
+        elif acao == 4:
+            dicionario[tipo].remove(set(entrada))
     elif tipo == "frozenset":
-        dicionario[tipo].append(frozenset(entrada))
+        if acao == 1:
+            dicionario[tipo].append(frozenset(entrada))
+        elif acao == 3:
+            return            
+        
+        elif acao == 4:
+            dicionario[tipo].remove(frozenset(entrada))
     elif tipo == "dict":
-        dicionario[tipo].append(dict(entrada))
+        if acao == 1:
+            dicionario[tipo].append(dict(entrada))
+        elif acao == 3:
+            return            
+        
+        elif acao == 4:
+            dicionario[tipo].remove(dict(entrada))
 
 def acao():
     
@@ -56,17 +135,15 @@ while 1:
 
     if a == 1:
         entrada = input("Digite seu dado\n")
-        converter(dicionario, tipo, entrada)
-
+        converter(dicionario, tipo, entrada, a)
     elif a == 2:
-        print("Nao implementada")
+        print(dicionario[tipo])
     elif a == 3:
-        print("Nao implementada")
+        entrada = input("Digite o dado que deseja editar")
+        converter(dicionario, tipo, entrada, a)
     elif a == 4:
-        dado = input("Qual dado deseja remover?\n")
-        dicionario[tipo].remove(dado)
+        entrada = input("Qual dado deseja remover?\n")
+        converter(dicionario, tipo, entrada, a)
     else:
         print("Açao invalida")
-    print() 
-
-    print(dicionario)
+    print()
