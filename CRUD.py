@@ -1,6 +1,8 @@
-def converter(dicionario, tipo, entrada, acao):
+import ast
+
+def converter(dicionario, entrada, acao):
     
-    if tipo == "int":
+    if eval(entrada) is int:
         if acao == 1:
             dicionario[tipo].append(int(entrada))
         elif acao == 3:
@@ -8,7 +10,7 @@ def converter(dicionario, tipo, entrada, acao):
             dicionario[tipo][index] = int(input("Digite o novo dado\n"))
         elif acao == 4:
             dicionario[tipo].remove(int(entrada))
-    elif tipo == "float":
+    elif eval(entrada) is float:
         if acao == 1:
             dicionario[tipo].append(float(entrada))
         elif acao == 3:        
@@ -16,7 +18,7 @@ def converter(dicionario, tipo, entrada, acao):
             dicionario[tipo][index] = float(input("Digite o novo dado\n"))
         elif acao == 4:
             dicionario[tipo].remove(float(entrada))
-    elif tipo == "complex":
+    elif eval(entrada) is complex:
         if acao == 1:
             dicionario[tipo].append(complex(entrada))
         elif acao == 3:
@@ -24,7 +26,7 @@ def converter(dicionario, tipo, entrada, acao):
             dicionario[tipo][index] = complex(input("Digite o novo dado\n"))
         elif acao == 4:
             dicionario[tipo].remove(complex(entrada))
-    elif tipo == "list":
+    elif eval(entrada) is list:
         if acao == 1:
             dicionario[tipo].append(list(entrada))
         elif acao == 3:
@@ -32,7 +34,7 @@ def converter(dicionario, tipo, entrada, acao):
             dicionario[tipo][index] = list(input("Digite o novo dado\n"))
         elif acao == 4:
             dicionario[tipo].remove(list(entrada))
-    elif tipo == "tuple":
+    elif eval(entrada) is tuple:
         if acao == 1:
             dicionario[tipo].append(tuple(entrada))
         elif acao == 3:
@@ -40,7 +42,7 @@ def converter(dicionario, tipo, entrada, acao):
             dicionario[tipo][index] = tuple(input("Digite o novo dado\n"))
         elif acao == 4:
             dicionario[tipo].remove(tuple(entrada))
-    elif tipo == "range":
+    elif eval(entrada) is range:
         if acao == 1:
             dicionario[tipo].append(range(entrada))
         elif acao == 3:
@@ -48,7 +50,7 @@ def converter(dicionario, tipo, entrada, acao):
             dicionario[tipo][index] = range(input("Digite o novo dado\n"))
         elif acao == 4:
             dicionario[tipo].remove(range(entrada))
-    elif tipo == "str":
+    elif eval(entrada) is str:
         if acao == 1:
             dicionario[tipo].append(str(entrada))
         elif acao == 3:
@@ -56,7 +58,7 @@ def converter(dicionario, tipo, entrada, acao):
             dicionario[tipo][index] = str(input("Digite o novo dado\n"))
         elif acao == 4:
             dicionario[tipo].remove(str(entrada))
-    elif tipo == "bytes":
+    elif eval(entrada) is bytes:
         if acao == 1:
             dicionario[tipo].append(bytes(entrada))
         elif acao == 3:
@@ -64,7 +66,7 @@ def converter(dicionario, tipo, entrada, acao):
             dicionario[tipo][index] = bytes(input("Digite o novo dado\n"))
         elif acao == 4:
             dicionario[tipo].remove(bytes(entrada))
-    elif tipo == "bytearray":
+    elif eval(entrada) is bytearray:
         if acao == 1:
             dicionario[tipo].append(bytearray(entrada))
         elif acao == 3:
@@ -72,7 +74,7 @@ def converter(dicionario, tipo, entrada, acao):
             dicionario[tipo][index] = bytearray(input("Digite o novo dado\n"))
         elif acao == 4:
             dicionario[tipo].remove(bytearray(entrada))
-    elif tipo == "memoryview":
+    elif eval(entrada) is memoryview:
         if acao == 1:
             dicionario[tipo].append(memoryview(entrada))
         elif acao == 3:
@@ -80,7 +82,7 @@ def converter(dicionario, tipo, entrada, acao):
             dicionario[tipo][index] = memoryview(input("Digite o novo dado\n"))
         elif acao == 4:
             dicionario[tipo].remove(memoryview(entrada))
-    elif tipo == "set":
+    elif eval(entrada) is set:
         if acao == 1:
             dicionario[tipo].append(set(entrada))
         elif acao == 3:
@@ -88,7 +90,7 @@ def converter(dicionario, tipo, entrada, acao):
             dicionario[tipo][index] = set(input("Digite o novo dado\n"))
         elif acao == 4:
             dicionario[tipo].remove(set(entrada))
-    elif tipo == "frozenset":
+    elif eval(entrada) is frozenset:
         if acao == 1:
             dicionario[tipo].append(frozenset(entrada))
         elif acao == 3:
@@ -96,7 +98,7 @@ def converter(dicionario, tipo, entrada, acao):
             dicionario[tipo][index] = frozenset(input("Digite o novo dado\n"))
         elif acao == 4:
             dicionario[tipo].remove(frozenset(entrada))
-    elif tipo == "dict":
+    elif eval(entrada) is dict:
         if acao == 1:
             dicionario[tipo].append(dict(entrada))
         elif acao == 3:
@@ -128,21 +130,34 @@ while 1:
     
     print()
     tipo = input("Digite o tipo de dado que deseja manipular\n")
-    if tipo == "bool" or not tipo in dicionario:
-        print("Tipo invalido")
-        continue
 
     if a == 1:
-        entrada = input("Digite seu dado\n")
-        converter(dicionario, tipo, entrada, a)
+        entrada = input("Digite o dado que deseja adicionar\n")
+        tip = str(type(eval(entrada))).strip("<class ''>")
+        if tipo == "bool" or not tipo in dicionario:
+            print("Tipo invalido")
+            continue
+        converter(dicionario, entrada, a)
     elif a == 2:
+        tip = str(type(eval(entrada))).strip("<class ''>")
+        if tipo == "bool" or not tipo in dicionario:
+            print("Tipo invalido")
+            continue
         print(dicionario[tipo])
     elif a == 3:
         entrada = input("Digite o dado que deseja editar")
-        converter(dicionario, tipo, entrada, a)
+        tip = str(type(eval(entrada))).strip("<class ''>")
+        if tipo == "bool" or not tipo in dicionario:
+            print("Tipo invalido")
+            continue
+        converter(dicionario, entrada, a)
     elif a == 4:
         entrada = input("Qual dado deseja remover?\n")
-        converter(dicionario, tipo, entrada, a)
+        tip = str(type(eval(entrada))).strip("<class ''>")
+        if tipo == "bool" or not tipo in dicionario:
+            print("Tipo invalido")
+            continue
+        converter(dicionario, entrada, a)
     else:
         print("Açao invalida")
     print()
