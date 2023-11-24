@@ -1,3 +1,13 @@
+
+def Ler(dicionario):
+
+    print("| Tipo   \t| Dado")
+    for tipo in dicionario:
+        print('|', tipo, '  \t| ', end="")
+        for dado in dicionario[tipo]:
+            print(dado, ' \t| ', end="")
+        print()
+
 def teste(tipo, dicionario):
 
     if tip == "bool" or not tip in dicionario:
@@ -39,13 +49,17 @@ def acao():
     return input()
 
 # usando um dicionario para salvar as info
-dicionario = {"int":[], "float":[], "complex":[], "list":[], "tuple":[], "range":[], "str":[], "list":[], "tuple":[], "range":[], "set":[], "frozenset":[], "dict":[]}
+dicionario = {"int":[], "float":[], "complex":[], "list":[], "tuple":[], "range":[], "str":[], "list":[], "set":[], "frozenset":[], "dict":[]}
 
 print("Bem vindo")
 
 while 1:
-    a = int(acao())
-    
+    try:
+        a = int(acao())
+    except:
+        print("\nAçao invalida!\n")
+        continue
+
     if a == 5:
         exit()
     
@@ -62,8 +76,7 @@ while 1:
             continue
         converter(dicionario, tip, entrada, a)
     elif a == 2:
-        for tipo in dicionario:
-            print(f'{tipo}: {dicionario[tipo]}')
+        Ler(dicionario)
     elif a == 3:
         entrada = input("Digite o dado que deseja editar\n")
         tip = str(type(eval(entrada))).split("'")[1]
