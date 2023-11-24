@@ -9,12 +9,24 @@ def teste(tipo, dicionario):
 def converter(dicionario, tipo, entrada, acao):
     
     if acao == 1:
-        dicionario[tipo].append(type(eval(entrada))(entrada))
+        try:
+            dicionario[tipo].append(type(eval(entrada))(entrada))
+        except:
+            print("\nSintax invalida")
+            return
     elif acao == 3:
-        index = dicionario[tipo].index(type(eval(entrada))(entrada))
+        try:
+            index = dicionario[tipo].index(type(eval(entrada))(entrada))
+        except:
+            print("\nSintax invalida")
+            return
         dicionario[tipo][index] = type(eval(entrada))(input("Digite o novo dado\n"))
     elif acao == 4:
-        dicionario[tipo].remove(type(eval(entrada))(entrada))
+        try:
+            dicionario[tipo].remove(type(eval(entrada))(entrada))
+        except:
+            print("\nSintax invalida")
+            return
     
 def acao():
     
@@ -41,7 +53,11 @@ while 1:
 
     if a == 1:
         entrada = input("Digite o dado que deseja adicionar\n")
-        tip = str(type(eval(entrada))).split("'")[1]
+        try:
+            tip = str(type(eval(entrada))).split("'")[1]
+        except:
+            print("Sintax invalida")
+            continue
         if not teste(tip, dicionario):
             continue
         converter(dicionario, tip, entrada, a)
