@@ -10,7 +10,7 @@ def Ler(dicionario):
 
 def teste(tipo, dicionario):
 
-    if tip == "bool" or not tip in dicionario:
+    if tipo == "bool" or not tipo in dicionario:
         print("Tipo invalido: ", tip)
         return 0
     else:
@@ -48,47 +48,52 @@ def acao():
     print("5 - Sair") 
     return input()
 
-# usando um dicionario para salvar as info
-dicionario = {"int":[], "float":[], "complex":[], "list":[], "tuple":[], "range":[], "str":[], "list":[], "set":[], "frozenset":[], "dict":[]}
+def main():
+    # usando um dicionario para salvar as info
+    dicionario = {"int":[], "float":[], "complex":[], "list":[], "tuple":[], "range":[], "str":[], "list":[], "set":[], "frozenset":[], "dict":[]}
 
-print("Bem vindo")
+    print("Bem vindo")
 
-while 1:
-    try:
-        a = int(acao())
-    except:
-        print("\nAçao invalida!\n")
-        continue
-
-    if a == 5:
-        exit()
-    
-    print()
-
-    if a == 1:
-        entrada = input("Digite o dado que deseja adicionar\n")
+    while 1:
         try:
-            tip = str(type(eval(entrada))).split("'")[1]
+            a = int(acao())
         except:
-            print("Sintax invalida")
+            print("\nAçao invalida!\n")
             continue
-        if not teste(tip, dicionario):
-            continue
-        converter(dicionario, tip, entrada, a)
-    elif a == 2:
-        Ler(dicionario)
-    elif a == 3:
-        entrada = input("Digite o dado que deseja editar\n")
-        tip = str(type(eval(entrada))).split("'")[1]
-        if not teste(tip, dicionario):
-            continue
-        converter(dicionario, tip, entrada, a)
-    elif a == 4:
-        entrada = input("Qual dado deseja remover?\n")
-        tip = str(type(eval(entrada))).split("'")[1]
-        if not teste(tip, dicionario):
-            continue
-        converter(dicionario, tip, entrada, a)
-    else:
-        print("Açao invalida")
-    print()
+
+        if a == 5:
+            exit()
+    
+        print()
+
+        if a == 1:
+            entrada = input("Digite o dado que deseja adicionar\n")
+            try:
+                tip = str(type(eval(entrada))).split("'")[1]
+            except:
+                print("Sintax invalida")
+                continue
+            if not teste(tip, dicionario):
+                continue
+            converter(dicionario, tip, entrada, a)
+        elif a == 2:
+            Ler(dicionario)
+        elif a == 3:
+            entrada = input("Digite o dado que deseja editar\n")
+            tip = str(type(eval(entrada))).split("'")[1]
+            if not teste(tip, dicionario):
+                continue
+            converter(dicionario, tip, entrada, a)
+        elif a == 4:
+            entrada = input("Qual dado deseja remover?\n")
+            tip = str(type(eval(entrada))).split("'")[1]
+            if not teste(tip, dicionario):
+                continue
+            converter(dicionario, tip, entrada, a)
+        else:
+            print("Açao invalida")
+        print()
+
+if __name__ == '__main__':
+    main()
+
