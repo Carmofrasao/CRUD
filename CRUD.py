@@ -24,6 +24,12 @@ def Ler(dicionario):
     else:
         print()
     
+    print("|         \t|            \t|", end="")
+    if dicionario[max_key][0] != 0:
+        for i in range(0, dicionario[max_key][0]):
+            print(' ' + str(i)[:6] + '..', '    \t| ', end="")
+        print()
+
     barra(dicionario[max_key][0])
     
     for tipo in dicionario:
