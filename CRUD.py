@@ -1,32 +1,39 @@
 import operator
+
+def barra(tam):
+    
+    for i in range(0, 2):
+        print(" ---------------", end="")
+    for i in range(0, tam):
+        print(" ---------------", end="")
+    print()
+
 def Ler(dicionario):
     max_key = max(dicionario.items(), key=operator.itemgetter(1))[0]
 
-    for i in range(0, 2):
-        print(" ---------------", end="")
-    for i in range(0, dicionario[max_key][0]):
-        print(" ---------------", end="")
-    print()
+    barra(dicionario[max_key][0])
+    
     print("| Tipo    \t| N. Itens    \t|", end="")
     if dicionario[max_key][0] != 0:
-        print(" Dado    \t|")
+        print(" Dado    \t", end="")
+        for i in range(0, dicionario[max_key][0]-1):
+            print("               ", end="")
+        for i in range(0, dicionario[max_key][0]-1):
+            print(" ", end="")
+        print("|")
     else:
         print()
-    for i in range(0, 2):
-        print(" ---------------", end="")
-    for i in range(0, dicionario[max_key][0]):
-        print(" ---------------", end="")
-    print()
+    
+    barra(dicionario[max_key][0])
+    
     for tipo in dicionario:
         print('|', tipo[:7], '    \t| ', end="")
         for dado in dicionario[tipo]:
             print(str(dado)[:6]+'..', '    \t| ', end="")
+        for i in range(0, dicionario[max_key][0]-dicionario[tipo][0]):
+            print("            \t|", end="")
         print()
-        for i in range(0, 2):
-            print(" ---------------", end="")
-        for i in range(0, dicionario[max_key][0]):
-            print(" ---------------", end="")
-        print()
+        barra(dicionario[max_key][0])
         
 def teste(tipo, dicionario):
 
