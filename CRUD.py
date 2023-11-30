@@ -1,5 +1,3 @@
-import operator
-
 def barra(tam):
     
     for i in range(0, 2):
@@ -9,7 +7,7 @@ def barra(tam):
     print()
 
 def Ler(dicionario):
-    max_key = max(dicionario.items(), key=operator.itemgetter(1))[0]
+    max_key = max(dicionario.items(), key=lambda x: x[1][0])[0]
 
     barra(dicionario[max_key][0])
     
@@ -85,11 +83,17 @@ def acao():
 
 def main():
     # usando um dicionario para salvar as info
-    dicionario = {"int":[0,], "float":[0,], "complex":[0,], "list":[0,], "tuple":[0,], "range":[0,], "str":[0,], "list":[0,], "set":[0,], "frozenset":[0,], "dict":[0,]}
-
+    with open('./banco', 'r+') as dic:
+        dicionario = eval(dic.readline())
+    
     print("Bem vindo")
 
     while 1:
+        with open('./banco', 'w') as dic:
+            dic.write(str(dicionario))
+        # usando um dicionario para salvar as info
+        with open('./banco', 'r+') as dic:
+            dicionario = eval(dic.readline())
         try:
             a = int(acao())
         except:
