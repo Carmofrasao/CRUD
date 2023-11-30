@@ -44,7 +44,7 @@ def Ler(dicionario):
 def teste(tipo, dicionario):
 
     if tipo == "bool" or not tipo in dicionario:
-        print("Tipo invalido: ", tip)
+        print("Tipo invalido: ", tipo)
         return 0
     else:
         return 1
